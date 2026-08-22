@@ -38,7 +38,7 @@ exactly what the simulated attack triggers (all 4 at once).
 
 | File | Purpose |
 |---|---|
-| `simulate.py` | Generates synthetic normal traffic for 6 devices over 5 days, plus a separate test file with a simulated lateral-movement attack injected *(not yet uploaded to this repo — coming in a follow-up commit)* |
+| `simulate.py` | Generates synthetic normal traffic for 6 devices over 5 days, plus a separate test file with a simulated lateral-movement attack injected |
 | `baseline.py` | Learns the per-device baseline from a traffic CSV → `baseline.json` |
 | `detector.py` | Compares new traffic against `baseline.json`, flags the 4 anomaly types |
 | `capture.py` | Converts a real `.pcap` capture into the same CSV format, so real traffic can be tested the same way as synthetic data |
@@ -46,6 +46,7 @@ exactly what the simulated attack triggers (all 4 at once).
 | `data/attack_traffic.csv` | Captured test traffic used to exercise the detector |
 | `data/real_traffic_session1.csv` | Real capture: mDNS + ICMP between 3 VMs |
 | `data/real_traffic_session3.csv` | Real capture: SSH-pattern traffic between 2 VMs |
+| `data/web_traffic.csv` | Real capture: HTTP traffic (curl requests to an Apache server) between 3 VMs |
 
 Raw `.pcap` files aren't checked into the repo (see `.gitignore`) —
 they're available on request. Each CSV above is what `capture.py`
@@ -104,18 +105,19 @@ python3 capture.py normal_traffic.pcap --output real_traffic.csv
 `capture.py` maps each captured packet to the same
 `timestamp, src_ip, dst_ip, dst_port, protocol, bytes` schema
 `simulate.py` produces, so `baseline.py` and `detector.py` work on it
-unmodified. `data/real_traffic_session1.csv` and
-`data/real_traffic_session3.csv` are two of those capture sessions,
-included as samples.
+unmodified. `data/real_traffic_session1.csv`, `data/real_traffic_session3.csv`,
+and `data/web_traffic.csv` are three of those capture sessions,
+included as samples — covering mDNS/ICMP, SSH-pattern, and HTTP
+(curl-to-Apache) traffic respectively.
 
-**Caveat:** a few minutes of ping/SSH traffic between a handful of
-VMs is nowhere near enough data to build a statistically meaningful
-baseline on its own (not enough distinct hours, not enough flow-size
-variety). It's a real-data sanity check that the pcap→CSV conversion
-pipeline works end-to-end — the next step is capturing across longer,
-more varied sessions (multiple days, more protocols: SSH, SMB/file
-shares, not just ICMP) before the real capture can replace the
-synthetic baseline for a genuine test.
+**Caveat:** a few minutes of ping/SSH/HTTP traffic between a handful
+of VMs is nowhere near enough data to build a statistically
+meaningful baseline on its own (not enough distinct hours, not enough
+flow-size variety). It's a real-data sanity check that the pcap→CSV
+conversion pipeline works end-to-end — the next step is capturing
+across longer, more varied sessions (multiple days, more protocols:
+SSH, SMB/file shares, not just ICMP/HTTP) before the real capture can
+replace the synthetic baseline for a genuine test.
 
 ## Not yet done
 
@@ -127,4 +129,3 @@ synthetic baseline for a genuine test.
 - Tuning thresholds (`VOLUME_ZSCORE_THRESHOLD`, `FANOUT_ZSCORE_THRESHOLD`)
   against real traffic's natural variance, which will likely differ
   from the synthetic data's
-- Adding `simulate.py` to this repo
