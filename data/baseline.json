@@ -1,0 +1,47 @@
+{
+  "10.0.2.10": {
+    "known_peers": [
+      "10.0.2.11",
+      "10.0.2.12",
+      "224.0.0.251"
+    ],
+    "active_hours": [
+      21,
+      23
+    ],
+    "avg_bytes": 144.2,
+    "std_bytes": 276.4,
+    "avg_fanout_per_hour": 2,
+    "std_fanout_per_hour": 1.0
+  },
+  "10.0.2.11": {
+    "known_peers": [
+      "10.0.2.10",
+      "10.0.2.12",
+      "224.0.0.251"
+    ],
+    "active_hours": [
+      21,
+      23
+    ],
+    "avg_bytes": 735.5,
+    "std_bytes": 1729.3,
+    "avg_fanout_per_hour": 2.5,
+    "std_fanout_per_hour": 1.0
+  },
+  "10.0.2.12": {
+    "known_peers": [
+      "10.0.2.10",
+      "10.0.2.11",
+      "224.0.0.251"
+    ],
+    "active_hours": [
+      21,
+      23
+    ],
+    "avg_bytes": 216.1,
+    "std_bytes": 350.4,
+    "avg_fanout_per_hour": 1.5,
+    "std_fanout_per_hour": 1.0
+  }
+}
