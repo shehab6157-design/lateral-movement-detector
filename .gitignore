@@ -1,0 +1,10 @@
+# Raw packet captures aren't checked into source control.
+# The .pcap files behind data/*.csv are available on request -
+# see the README for how each CSV was captured and converted.
+*.pcap
+
+__pycache__/
+*.pyc
+*.json.bak
+traffic.csv
+test_traffic.csv
