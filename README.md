@@ -1,5 +1,11 @@
 # Lateral Movement Detector
 
+> **This is the first version of the idea.** It grew into
+> [APIS](https://github.com/shehab6157-design/apis-lateral-movement-detector), which covers the
+> "Not yet done" list below: a real attack replayed in a 3-VM lab, thresholds tuned on the public
+> Los Alamos (LANL) dataset, credential-theft and AI-agent detection. Portfolio:
+> [shehab6157-design.github.io](https://shehab6157-design.github.io)
+
 Detects "east-west" internal network traffic anomalies — the pattern
 an attacker leaves behind while moving between already-compromised
 internal hosts using legitimate protocols (SMB, RDP, SSH). Signature-
