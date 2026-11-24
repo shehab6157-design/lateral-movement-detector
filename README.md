@@ -88,8 +88,7 @@ Fix: floor `std_fanout_per_hour` at 1.0. Re-checked: max normal
 z-score dropped to 1.9 (under the 2.0 threshold), and the real attack
 still scored well above it (z of about 5.2). This is exactly the kind of
 gap that only shows up by testing the detector against its own
-"normal" data, not just the attack case, and it is worth mentioning as-is in
-an interview.
+"normal" data, not just the attack case.
 
 ## Testing on real captured traffic
 
